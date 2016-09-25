@@ -10,26 +10,31 @@
     <header>
       <h1>Employee Data</h1>
     </header>
+    <aside>
+    <h2>Enter Employee information</h2>
+    <form id='employee-info'>
+    <label for='employeeFirstName'>First Name:</label>
+    <input type="text" id='employeeFirstName' name='employeeFirstName'>
+
+    <label for='employeeLastName'>Last Name:</label>
+    <input type="text" id='employeeLastName' name='employeeLastName'>
+
+    <label for='idNumber'>Id Number:</label>
+    <input type="text" id='idNumber' name='idNumber'>
+
+    <label for='jobTitle'>Job Title:</label>
+    <input type="text" id='jobTitle' name='jobTitle'>
+
+    <label for='annualSalary'>Annual Salary:</label>
+    <input type="text" id='annualSalary' name='annualSalary'>
+
+    <button type="submit">Submit</button>
+  </form>
+  </aside>
+  
     <main>
-      <h2>Enter Employee information</h2>
-      <form id='employee-info'>
-      <label for='employeeFirstName'>First Name:</label>
-      <input type="text" id='employeeFirstName' name='employeeFirstName'>
 
-      <label for='employeeLastName'>Last Name:</label>
-      <input type="text" id='employeeLastName' name='employeeLastName'>
-
-      <label for='idNumber'>Id Number:</label>
-      <input type="text" id='idNumber' name='idNumber'>
-
-      <label for='jobTitle'>Job Title:</label>
-      <input type="text" id='jobTitle' name='jobTitle'>
-
-      <label for='annualSalary'>Annual Salary:</label>
-      <input type="text" id='annualSalary' name='annualSalary'>
-
-      <button type="submit">Submit</button>
-    </form>
+    <section>
       <h2>Employee List</h2>
       <table class='employeeList'>
         <tr>
@@ -48,12 +53,18 @@
           <th>
             Annual Salary
           </th>
+          <th class='.delButton'>
+            Delete
+          </th>
         </tr>
       </table>
+      </section>
+      <section>
       <h2>Monthly Salary Expenditures</h2>
       <p>
-        Monthly Salary Expenditures: <span></span>
+        Total: $<span>0</span>
       </p>
+    </section>
     </main>
 
   </body>

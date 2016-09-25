@@ -1,4 +1,75 @@
-input {
+body {
+  background-color: floralwhite;
+}
+
+h1, h2 {
+  color: black;
+}
+
+h1 {
+  text-align: center;
+}
+section {
+  padding: 0 0 20px 0;
+}
+
+aside {
+  margin-left: 40px;
+  margin-right: 20px;
+  float:left;
+  background-color: SteelBlue;
+  border-radius: 20px;
+
+}
+aside h2 {
+  padding: 0 10px 0 10px;
+}
+main {
+  text-align: left;
+}
+
+form label, form input, form button {
+  display: block;
+  width: 200px;
+  margin: 0 auto;
+}
+form label {
+  padding-top: 10px;
+}
+form input {
+  background-color: lightblue;
   border: none;
-  border-bottom: lightgrey solid 1px;
+}
+form button {
+  margin: 20px auto;
+}
+
+table {
+  margin: 0 auto;
+  width: 800px;
+  background-color: floralwhite;
+  border: 1px solid LightSteelBlue;
+}
+
+th, td {
+  vertical-align: top;
+  /*border: 1px solid black;*/
+}
+
+th {
+  text-transform: uppercase;
+  text-align: center;
+  background: SteelBlue;
+  border-radius: 5px;
+}
+td {
+  text-align: left;
+  padding: 0 0 0 5px;
+}
+
+table tr:nth-child(odd) {
+  background-color: Gainsboro;
+}
+table tr:nth-child(even) {
+  background-color: LightSteelBlue;
 }

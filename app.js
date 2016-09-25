@@ -7,12 +7,10 @@ $(document).ready(function() {
     var employee = {};
 
     var fields = $('#employee-info').serializeArray();
-    console.log('fields', fields);
 
     fields.forEach(function (element, index) {
       employee[element.name] = element.value;
     });
-    console.log('employee object', employee);
 
     $('#employee-info').find('input[type=text]').val('');
 
@@ -22,9 +20,8 @@ $(document).ready(function() {
     function appendDom(emp) {
       var $emp = $('<tr class="employee"></tr>');
       var $tableData = $('<td>' +  emp.employeeFirstName + '</td><td>' + emp.employeeLastName + '</td><td>' +
-        emp.idNumber + '</td><td>' + emp.jobTitle + '</td><td id="annSal">' + emp.annualSalary + '</td><td><button id="deleteButton">Delete</button></td>')
+        emp.idNumber + '</td><td>' + emp.jobTitle + '</td><td id="annSal">$' + emp.annualSalary + '</td><td><button id="deleteButton">Delete</button></td>')
 
-      //$tableData.data('salary', emp.annualSalary);
       $emp.data('salary', emp.annualSalary);
 
       $emp.append($tableData);
@@ -32,9 +29,8 @@ $(document).ready(function() {
       $('table').append($emp);
 
       var $sal = $emp.data('salary');
-      //$tableData.data('salary')
 
-      total += Math.round($sal);
+      total += Number($sal);
 
       console.log(total);
 
@@ -44,10 +40,10 @@ $(document).ready(function() {
 
 $('.employeeList').on('click', '#deleteButton', function () {
 
-  var deleteB = $(this).parents('tr').data('salary');
-  console.log(deleteB);
+  var deleteEmployee = $(this).parents('tr').data('salary');
+  console.log(deleteEmployee);
 
-  total -= deleteB;
+  total -= deleteEmployee;
 
   $('span').text(total);
 
