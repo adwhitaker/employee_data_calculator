@@ -22,14 +22,17 @@ $(document).ready(function() {
     function appendDom(emp) {
       var $emp = $('<tr class="employee"></tr>');
       var $tableData = $('<td>' +  emp.employeeFirstName + '</td><td>' + emp.employeeLastName + '</td><td>' +
-        emp.idNumber + '</td><td>' + emp.jobTitle + '</td><td id="annSal">' + emp.annualSalary + '</td><td><button>Delete</button></td>')
+        emp.idNumber + '</td><td>' + emp.jobTitle + '</td><td id="annSal">' + emp.annualSalary + '</td><td><button id="deleteButton">Delete</button></td>')
 
-      $tableData.data('salary', emp.annualSalary);
+      //$tableData.data('salary', emp.annualSalary);
+      $emp.data('salary', emp.annualSalary);
+
       $emp.append($tableData);
 
       $('table').append($emp);
 
-      var $sal = $tableData.data('salary')
+      var $sal = $emp.data('salary');
+      //$tableData.data('salary')
 
       total += Math.round($sal);
 
@@ -38,5 +41,17 @@ $(document).ready(function() {
       $('span').text(total);
 
   };
+
+$('.employeeList').on('click', '#deleteButton', function () {
+
+  var deleteB = $(this).parents('tr').data('salary');
+  console.log(deleteB);
+
+  total -= deleteB;
+
+  $('span').text(total);
+
+  $(this).parents('tr').remove();
+});
 
 });
