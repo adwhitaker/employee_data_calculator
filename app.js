@@ -17,7 +17,7 @@ $(document).ready(function() {
     appendDom(employee);
     });
 
-    function appendDom(emp) {
+  function appendDom(emp) {
       var $emp = $('<tr class="employee"></tr>');
       var $tableData = $('<td>' +  emp.employeeFirstName + '</td><td>' + emp.employeeLastName + '</td><td>' +
         emp.idNumber + '</td><td>' + emp.jobTitle + '</td><td id="annSal">$' + emp.annualSalary + '</td><td><button id="deleteButton">Delete</button></td>')
@@ -32,22 +32,17 @@ $(document).ready(function() {
 
       total += Number($sal);
 
-      console.log(total);
-
       $('span').text(total);
-
   };
 
-$('.employeeList').on('click', '#deleteButton', function () {
+  $('.employeeList').on('click', '#deleteButton', function () {
+    var deleteEmployee = $(this).parents('tr').data('salary');
 
-  var deleteEmployee = $(this).parents('tr').data('salary');
-  console.log(deleteEmployee);
+    total -= deleteEmployee;
 
-  total -= deleteEmployee;
+    $('span').text(total);
 
-  $('span').text(total);
-
-  $(this).parents('tr').remove();
-});
+    $(this).parents('tr').remove();
+  });
 
 });
