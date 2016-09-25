@@ -28,7 +28,9 @@ $(document).ready(function() {
 
       $('table').append($emp);
 
-      var $sal = $emp.data('salary');
+      var $sal = ( $emp.data('salary') ) / 12;
+
+      $sal = $sal.toFixed(2);
 
       total += Number($sal);
 
@@ -36,7 +38,9 @@ $(document).ready(function() {
   };
 
   $('.employeeList').on('click', '#deleteButton', function () {
-    var deleteEmployee = $(this).parents('tr').data('salary');
+    var deleteEmployee = ( $(this).parents('tr').data('salary') ) / 12;
+
+    deleteEmployee = deleteEmployee.toFixed(2);
 
     total -= deleteEmployee;
 
