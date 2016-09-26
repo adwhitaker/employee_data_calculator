@@ -20,7 +20,7 @@ $(document).ready(function() {
   function appendDom(emp) {
       var $emp = $('<tr class="employee"></tr>');
       var $tableData = $('<td>' +  emp.employeeFirstName + '</td><td>' + emp.employeeLastName + '</td><td>' +
-        emp.idNumber + '</td><td>' + emp.jobTitle + '</td><td id="annSal">$' + emp.annualSalary + '</td><td><button id="deleteButton">Delete</button></td>')
+        emp.idNumber + '</td><td>' + emp.jobTitle + '</td><td>$' + emp.annualSalary + '</td><td><button id="deleteButton">Delete</button></td>')
 
       $emp.data('salary', emp.annualSalary);
 
