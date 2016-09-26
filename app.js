@@ -1,6 +1,6 @@
-var total = 0;
-
 $(document).ready(function() {
+  var total = 0;
+
   $('#employee-info').on('submit', function(event) {
     event.preventDefault();
 
@@ -17,6 +17,7 @@ $(document).ready(function() {
     appendDom(employee);
     });
 
+// function to add employee to table and calculate the monthly salary expenditures
   function appendDom(emp) {
       var $emp = $('<tr class="employee"></tr>');
       var $tableData = $('<td>' +  emp.employeeFirstName + '</td><td>' + emp.employeeLastName + '</td><td>' +
@@ -28,21 +29,14 @@ $(document).ready(function() {
 
       $('table').append($emp);
 
-      var $sal = ( $emp.data('salary') ) / 12;
-
-      $sal = $sal.toFixed(2);
-
-      total += Number($sal);
+      total += ( ( $emp.data('salary') ) / 12 ).toFixed(2);
 
       $('span').text(total);
   };
 
+// event listener to remove employee from the table and update monthly salary expenditures
   $('.employeeList').on('click', '#deleteButton', function () {
-    var deleteEmployee = ( $(this).parents('tr').data('salary') ) / 12;
-
-    deleteEmployee = deleteEmployee.toFixed(2);
-
-    total -= deleteEmployee;
+    total -= ( ( $(this).parents('tr').data('salary') ) / 12 ).toFixed(2);
 
     $('span').text(total);
 
