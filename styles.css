@@ -39,6 +39,7 @@ form label {
 form input {
   background-color: lightblue;
   border: none;
+  padding: 5px 0 3px 5px;
 }
 form button {
   margin: 20px auto;
