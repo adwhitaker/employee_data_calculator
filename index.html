@@ -1,71 +1,95 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Employee Data</title>
-    <script src='jquery-3.1.0.min.js'></script>
-    <script src='app.js'></script>
-    <link rel='stylesheet' href='styles.css'>
-  </head>
-  <body>
-    <header>
-      <h1>Employee Data</h1>
-    </header>
-    <aside>
-    <h2>Enter Employee information</h2>
-    <form id='employee-info'>
-    <label for='employeeFirstName'>First Name:</label>
-    <input type="text" id='employeeFirstName' name='employeeFirstName'>
+<head>
+  <title>Employee Data</title>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js'></script>
+  <script src='app.js'></script>
+  <link rel='stylesheet' href='styles.css'>
+</head>
+<body>
+  <main ng-app='salCalc'>
+    <section ng-controller='SalCalculator as calc'>
 
-    <label for='employeeLastName'>Last Name:</label>
-    <input type="text" id='employeeLastName' name='employeeLastName'>
+      <header>
+        <h1>Employee Data</h1>
+      </header>
+      <aside>
+        <h2>Enter Employee information</h2>
+        <form id='employee-info'>
+          <label for='employeeFirstName'>First Name:</label>
+          <input type="text" id='employeeFirstName' name='employeeFirstName' ng-model='calc.employee.firstName'>
 
-    <label for='idNumber'>Id Number:</label>
-    <input type="text" id='idNumber' name='idNumber'>
+          <label for='employeeLastName'>Last Name:</label>
+          <input type="text" id='employeeLastName' name='employeeLastName' ng-model='calc.employee.lastName'>
 
-    <label for='jobTitle'>Job Title:</label>
-    <input type="text" id='jobTitle' name='jobTitle'>
+          <label for='idNumber'>Id Number:</label>
+          <input type="text" id='idNumber' name='idNumber' ng-model='calc.employee.idNumber'>
 
-    <label for='annualSalary'>Annual Salary:</label>
-    <input type="text" id='annualSalary' name='annualSalary'>
+          <label for='jobTitle'>Job Title:</label>
+          <input type="text" id='jobTitle' name='jobTitle'ng-model='calc.employee.jobTitle'>
 
-    <button type="submit">Submit</button>
-  </form>
-  </aside>
-  
-    <main>
+          <label for='annualSalary'>Annual Salary:</label>
+          <input type="number" id='annualSalary' name='annualSalary' ng-model='calc.employee.salary'>
 
-    <section>
-      <h2>Employee List</h2>
-      <table class='employeeList'>
-        <tr>
-          <th>
-            First Name
-          </th>
-          <th>
-            Last Name
-          </th>
-          <th>
-            Id Number
-          </th>
-          <th>
-            Job Title
-          </th>
-          <th>
-            Annual Salary
-          </th>
-          <th class='.delButton'>
-            Delete
-          </th>
-        </tr>
-      </table>
-      </section>
-      <section>
-      <h2>Monthly Salary Expenditures</h2>
-      <p>
-        Total: $<span>0</span>
-      </p>
+          <button type='submit' ng-click='calc.createEmployee()'>Submit</button>
+        </form>
+      </aside>
+
+      <main>
+
+        <section>
+          <h2>Employee List</h2>
+          <table class='employeeList'>
+            <tr>
+              <th>
+                First Name
+              </th>
+              <th>
+                Last Name
+              </th>
+              <th>
+                Id Number
+              </th>
+              <th>
+                Job Title
+              </th>
+              <th>
+                Annual Salary
+              </th>
+              <th class='.delButton'>
+                Delete
+              </th>
+            </tr>
+            <tr ng-repeat='employee in calc.employees'>
+              <td>
+                {{ employee.firstName }}
+              </td>
+              <td>
+                {{ employee.lastName }}
+              </td>
+              <td>
+                {{ employee.idNumber }}
+              </td>
+              <td>
+                {{ employee.jobTitle }}
+              </td>
+              <td>
+                ${{ employee.salary }}
+              </td>
+              <td>
+                <button ng-click='calc.deleteEmployee($index)'>Delete</button>
+              </td>
+            </tr>
+          </table>
+        </section>
+        <section>
+          <h2>Monthly Salary Expenditures</h2>
+          <p>
+            Total: ${{ calc.totalSalary }}
+          </p>
+        </section>
+      </main>
     </section>
-    </main>
-
-  </body>
+  </main>
+</body>
 </html>

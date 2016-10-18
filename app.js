@@ -1,60 +1,29 @@
-$(document).ready(function() {
-  // this is the monthly expenses total that is appended to the DOM
-  var total = 0;
+console.log('in app.js');
+var app = angular.module('salCalc', []);
 
-  // this is an event listener that waits for the information on the form to be submitted
-  $('#employee-info').on('submit', function(event) {
-    event.preventDefault();
+app.controller('SalCalculator', function () {
+  console.log('SalCalculator loaded');
 
-    // the form takes in the information, adds it to an object,
-    var employee = {};
-    var fields = $('#employee-info').serializeArray();
+  var self = this;
+  self.employees = [];
+  self.totalSalary = 0;
 
-    fields.forEach(function (element, index) {
-      employee[element.name] = element.value;
+  self.getSalary = function () {
+    self.totalSalary = 0;
+    self.employees.forEach(function (employee) {
+      self.totalSalary += employee.salary;
     });
 
-    $('#employee-info').find('input[type=text]').val('');
-
-    appendDom(employee);
-    });
-
-  // this is a function that appends the information taken in by form to the DOM using .data()
-  function appendDom(emp) {
-      var $emp = $('<tr class="employee"></tr>');
-      // this creates the table of info submitted on the form
-      var $tableData = $('<td>' +  emp.employeeFirstName +
-      '</td><td>' + emp.employeeLastName + '</td><td>' +
-        emp.idNumber + '</td><td>' + emp.jobTitle +
-        '</td><td>$' + emp.annualSalary +
-        '</td><td><button id="deleteButton">Delete</button></td>')
-
-      // the salary is added to the the .data() on the tr element
-      $emp.data('salary', emp.annualSalary);
-
-      $emp.append($tableData);
-
-      // the info is appended to the DOM
-      $('table').append($emp);
-
-      //the following calculates the monthly salary from the table data and appends it to the montly expenses on the DOM
-      var $sal = ( $emp.data('salary') ) / 12;
-      $sal = $sal.toFixed(2);
-      total += Number($sal);
-      $('span').text(total);
+    self.totalSalary = (self.totalSalary / 12).toFixed(2);
   };
 
-// this is an event listener that listens for the delete button to be clicked
-  $('.employeeList').on('click', '#deleteButton', function () {
-    // it takes in the employee's yearly salary that is stored on the DOM and divides by 12
-    var deleteEmployee = ( $(this).parents('tr').data('salary') ) / 12;
-    deleteEmployee = deleteEmployee.toFixed(2);
+  self.createEmployee = function () {
+      self.employees.push(angular.copy(self.employee));
+      self.getSalary();
+    };
 
-    // removes that total from the monthly expenses on the DOM
-    total -= deleteEmployee;
-    $('span').text(total);
-
-    // and romves the employee row
-    $(this).parents('tr').remove();
-  });
+  self.deleteEmployee = function (index) {
+    self.employees.splice(index, 1);
+    self.getSalary();
+  };
 });
